@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Security.Cryptography.X509Certificates;
 using System.Text;
@@ -51,10 +52,10 @@ namespace PoePart1
                 Console.WriteLine($"\nEnter units of measurement for {ingredients[i]}:");
                 units[i] = Console.ReadLine();
             }
-        }
 
-        public void getsteps()
-        {
+
+
+
 
             Console.WriteLine("\nPlease enter the number of steps involved in this recipe:");
             int numsteps = int.Parse(Console.ReadLine());
@@ -71,83 +72,94 @@ namespace PoePart1
             Console.WriteLine("--------------------------------\n" +
                 "Ingredients:\n" +
                 "--------------------------------\n");
-        }
 
 
-        public void Display()
-        {
-
-
-            for (int i = 0; i < ingredients.Length; i++)
+            for (int i = 0; i < amount; i++)
             {
                 Console.WriteLine($" {ingredients[i]} - {quantity[i]} {units[i]}\n");
 
             }
 
+
             Console.WriteLine("--------------------------------\n" +
-                "Instructions:\n" +
-                "--------------------------------\n");
+            "Instructions:\n" +
+            "--------------------------------\n");
 
             for (int i = 0; i < steps.Length; i++)
             {
                 Console.WriteLine($" Step {i + 1}. {steps[i]}\n");
+
             }
-        }
 
 
 
-        public void ClearQuantities()
-        {
-            for (int i = 0; i < quantity.Length; i++)
-            {
-                quantity[i] = 0;
-            }
-            Console.WriteLine("Quantities reset.");
-        }
 
-        public void ClearRecipe()
-        {
-            ingredients = null;
-            units = null;
-            quantity = null;
-            steps = null;
-            Console.WriteLine("Recipe cleared.");
-        }
-
-        public void ScaleRecipe(double factor)
-        {
-            for (int i = 0; i < quantity.Length; i++)
-            {
-                quantity[i] *= factor;
-            }
-            Console.WriteLine($"Recipe scaled by a factor of {factor}.");
-        }
-
-        public void RecipeMenu()
-        {
             Console.WriteLine("Enter scaling factor (0.5, 2, or 3)\n" +
-                    " '4' to reset quantities\n '5' to clear recipe:");
+            " '4' to reset quantities\n '5' to clear recipe:");
 
             string input = Console.ReadLine();
 
-            switch (input)
+            if (input == "4")
             {
-                case "4":
-                    ClearQuantities();
-                    break;
+                for (int i = 0; i < amount; i++)
+                {
+                    ingredients[i] = default;
+                    quantity[i] = default;
+                    units[i] = default;
+                }
+                for (int i = 0; i < numsteps; i++)
+                {
+                    steps[i] = default;
 
-                case "5":
-                    ClearRecipe();
-                    break;
+                    Console.WriteLine($" {ingredients[i]} - {quantity[i]} {units[i]}\n");
 
-                default:
-                    double scalingFactor = double.Parse(input);
-                    ScaleRecipe(scalingFactor);
-                    break;
+                }
+                getIngredients();
+
+            }
+            else if (input == "5")
+            {
+                for (int i = 0; i < amount; i++)
+                {
+                    quantity[i] /= 2;
+
+                    Console.WriteLine($" {ingredients[i]} - {quantity[i]} {units[i]}\n");
+
+                }
+                getIngredients();
+
+            }
+            else if (input == "6")
+            {
+               
+                System.Environment.Exit(0);
+                Console.ReadKey();
+
+            }
+        
+
+                else
+                {
+                    double scalingfactor = double.Parse(input);
+                    for (int i = 0; i < amount; i++)
+                    {
+                        quantity[i] *= scalingfactor;
+
+                        Console.WriteLine($" {ingredients[i]} - {quantity[i]}{units[i]}\n");
+
+                    }
+                    getIngredients();
+                }
             }
         }
     }
-}
+
+
+
+
+
+
+
 
 
 
