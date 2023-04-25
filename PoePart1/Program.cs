@@ -14,14 +14,9 @@ namespace RecipeApplication
             //an instsance of the recipe class is created 
             Recipe recipe = new Recipe(); // create an instance of Recipe class
 
-            recipe.recipe();
-            recipe.getIngredients();
-           //ecipe.displaysteps();
-
-                Console.WriteLine("\n\nRecipe menu:");
-           // recipe.RecipeMenu();
-
-
+            recipe.recipe(); //calling the recipe class
+            recipe.IngredientDetails(); // calling the ingredient class
         }
     }
-    }
+}
+

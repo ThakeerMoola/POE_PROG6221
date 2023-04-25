@@ -21,7 +21,7 @@ namespace PoePart1
 
         }
 
-        public void getIngredients()
+        public void IngredientDetails()
         {
 
             Console.WriteLine("\nPlease enter the number of ingredients for your special dish: ");
@@ -108,6 +108,7 @@ namespace PoePart1
                     Console.WriteLine($" {ingredients[i]} - {quantity[i]} {units[i]}\n");
 
                 }
+                IngredientDetails();
 
 
             }
@@ -120,7 +121,7 @@ namespace PoePart1
                     Console.WriteLine($" {ingredients[i]} - {quantity[i]} {units[i]}\n");
 
                 }
-                getIngredients();
+                IngredientDetails();
 
             }
             else if (input == "6")
