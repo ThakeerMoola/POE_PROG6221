@@ -130,7 +130,7 @@ namespace PoePart1
                 else
                     {
 
-                        public void scalling() {
+                        public void scallingmethod() {
 
                             double scalingfactor = double.Parse(input);
                             for (int i = 0; i < amount; i++)
