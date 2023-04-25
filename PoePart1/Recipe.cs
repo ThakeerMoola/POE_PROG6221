@@ -10,10 +10,7 @@ namespace PoePart1
 {
     internal class Recipe
     {
-        private string[] ingredients;
-        private string[] units;
-        private double[] quantity;
-        private string[] steps;
+
         //class repicedisplay created
         public void recipe()
         {
@@ -21,6 +18,7 @@ namespace PoePart1
             Console.WriteLine("---------------------------------------------------" +
                 "\nWelcome to Recipe World, your house to tasty foods!\n" +
                 "---------------------------------------------------\n");
+
         }
 
         public void getIngredients()
@@ -29,7 +27,7 @@ namespace PoePart1
             Console.WriteLine("\nPlease enter the number of ingredients for your special dish: ");
 
 
-            //parsing an integer through the readline statement, user only aloowed to enter a number, or else error!
+            //parsing an integer through the readline statement, user only allowed to enter a number, or else error!
             int amount = int.Parse(Console.ReadLine());
 
 
@@ -40,7 +38,7 @@ namespace PoePart1
             string[] units = new string[amount];
             double[] quantity = new double[amount];
 
-            //loop fo the information entered by user 
+            //loop for the information entered by user 
             for (int i = 0; i < amount; i++)
             {
                 Console.WriteLine($"\nEnter ingredient {i + 1} name:");
@@ -52,8 +50,6 @@ namespace PoePart1
                 Console.WriteLine($"\nEnter units of measurement for {ingredients[i]}:");
                 units[i] = Console.ReadLine();
             }
-
-
 
 
 
@@ -93,9 +89,7 @@ namespace PoePart1
 
 
 
-
-            Console.WriteLine("Enter scaling factor (0.5, 2, or 3)\n" +
-            " '4' to reset quantities\n '5' to clear recipe:");
+            Console.WriteLine("Enter your required scaling factor for the recipe (0.5, 2, 3) or '4' to reset quantities or '5' to clear recipe):");
 
             string input = Console.ReadLine();
 
@@ -114,7 +108,7 @@ namespace PoePart1
                     Console.WriteLine($" {ingredients[i]} - {quantity[i]} {units[i]}\n");
 
                 }
-                getIngredients();
+
 
             }
             else if (input == "5")
@@ -131,24 +125,28 @@ namespace PoePart1
             }
             else if (input == "6")
             {
-               
+
                 System.Environment.Exit(0);
                 Console.ReadKey();
 
             }
-        
 
-                else
+
+            else
+            {
+                double scalingfactor = double.Parse(input);
+                for (int i = 0; i < amount; i++)
                 {
-                    double scalingfactor = double.Parse(input);
-                    for (int i = 0; i < amount; i++)
-                    {
-                        quantity[i] *= scalingfactor;
+                    quantity[i] *= scalingfactor;
+
+                    Console.WriteLine("--------------------------------\n" +
+            "Scaled Recipe:\n" +
+            "--------------------------------\n"); 
 
                         Console.WriteLine($" {ingredients[i]} - {quantity[i]}{units[i]}\n");
 
                     }
-                    getIngredients();
+                    
                 }
             }
         }

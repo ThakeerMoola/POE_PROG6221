@@ -16,14 +16,9 @@ namespace RecipeApplication
 
             recipe.recipe();
             recipe.getIngredients();
-            
+           //ecipe.displaysteps();
 
-
-            //  recipe.ScaleRecipe();
-
-
-
-            Console.WriteLine("\n\nRecipe menu:");
+                Console.WriteLine("\n\nRecipe menu:");
            // recipe.RecipeMenu();
 
 
