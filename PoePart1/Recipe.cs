@@ -103,7 +103,8 @@ namespace PoePart1
             {
                 for (int i = 0; i < amount; i++)
                 {
-                    quantity[i] /= 2;
+                   quantity[i] *= 2;
+                    
 
                     Console.WriteLine($" {ingredients[i]} - {quantity[i]} {units[i]}\n");
                    
