@@ -23,8 +23,8 @@ namespace PoePart1
             //parsing an integer through the readline statement, user only aloowed to enter a number, or else error!
             int amount = int.Parse(Console.ReadLine());
 
-        
-       
+
+
 
             //array to save ingredients and loop the amount of ingredients needed
             string[] ingredients = new string[amount];
@@ -75,56 +75,75 @@ namespace PoePart1
                 Console.WriteLine($" Step {i + 1}. {steps[i]}\n");
             }
 
-
-            Console.WriteLine("Enter scaling factor (0.5, 2, or 3)\n" +
-                " '4' to reset quantities\n '5' to clear recipe:");
-
-            string input = Console.ReadLine();
-
-            if (input == "4")
+        
+           
             {
-                for (int i = 0; i < amount; i++)
+                Console.WriteLine("Enter scaling factor (0.5, 2, or 3)\n" +
+                    " '4' to reset quantities\n '5' to clear recipe:");
+
+                string input = Console.ReadLine();
+
+                if (input == "4")
                 {
-                    ingredients[i] = default;
-                    quantity[i] = default;
-                    units[i] = default;
-                }
-                for (int i = 0; i < numsteps; i++)
+
+                    Public void clear()
+                    {
+                        for (int i = 0; i < amount; i++)
+                        {
+                            ingredients[i] = default;
+                            quantity[i] = default;
+                            units[i] = default;
+                        }
+                        for (int i = 0; i < numsteps; i++)
+                        {
+                            steps[i] = default;
+
+                            Console.WriteLine($" {ingredients[i]} - {quantity[i]} {units[i]}\n");
+
+                        }
+                        recipeDisplay();
+
+                    }
+                
+
+
+                else if (input == "5")
+
                 {
-                    steps[i] = default;
+                    Public void clearRecipe()
 
-                    Console.WriteLine($" {ingredients[i]} - {quantity[i]} {units[i]}\n");
-                    
+                    {
+                        for (int i = 0; i < amount; i++)
+                        {
+                            quantity[i] *= 2;
+
+
+                            Console.WriteLine($" {ingredients[i]} - {quantity[i]} {units[i]}\n");
+
+                        }
+                        recipeDisplay();
+
+                    }
+
+
+
+                else
+                    {
+
+                        public void scalling() {
+
+                            double scalingfactor = double.Parse(input);
+                            for (int i = 0; i < amount; i++)
+                            {
+                                quantity[i] *= scalingfactor;
+
+                                Console.WriteLine($" {ingredients[i]} - {quantity[i]}{units[i]}\n");
+
+                            }
+                            recipeDisplay();
+                        }
+                    }
                 }
-                recipeDisplay();
-
-            }
-            else if (input == "5")
-            {
-                for (int i = 0; i < amount; i++)
-                {
-                   quantity[i] *= 2;
-                    
-
-                    Console.WriteLine($" {ingredients[i]} - {quantity[i]} {units[i]}\n");
-                   
-                }
-                recipeDisplay();
-
-            }
-            else
-            {
-                double scalingfactor = double.Parse(input);
-                for (int i = 0; i < amount; i++)
-                {
-                    quantity[i] *= scalingfactor;
-
-                    Console.WriteLine($" {ingredients[i]} - {quantity[i]}{units[i]}\n");
-                  
-                }
-                recipeDisplay();
-            }
-        }
     }
 }
 
