@@ -14,6 +14,11 @@ This is a C# console application that allows the user to input ingredients and s
 
 The following is based on how the application was built by me, following my own unique design structure.
 
+![image](https://user-images.githubusercontent.com/102582551/234549014-8a481f76-c9d4-4a73-9369-ba09c6238126.png)
+
+
+
+
 The class is called Recipe.
 
 First, we have the method recipe().
