@@ -118,7 +118,7 @@ namespace PoePart1
 
 
                 }
-                //caals the method
+                //calls the method
                 IngredientDetails();
 
 
