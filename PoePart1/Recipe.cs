@@ -34,7 +34,7 @@ namespace PoePart1
 
 
 
-            //arrays to ingredients, units and quantites needed 
+            //arrays to store ingredients, units and quantites needed 
             string[] ingredients = new string[amount];
             string[] units = new string[amount];
             double[] quantity = new double[amount];
@@ -53,19 +53,21 @@ namespace PoePart1
             }
 
 
-
+            // Prompt the user to enter the number of steps involved in this recipe
             Console.WriteLine("\nPlease enter the number of steps involved in this recipe:");
             int numsteps = int.Parse(Console.ReadLine());
 
+            //loop through the number of steps 
             string[] steps = new string[numsteps];
 
+            // Loop through the number of steps and prompt the user to enter each step's details
             for (int i = 0; i < numsteps; i++)
             {
                 Console.WriteLine($"\nEnter step {i + 1} and a description:");
                 steps[i] = Console.ReadLine();
             }
 
-
+            //displays the list of ingredients
             Console.WriteLine("--------------------------------\n" +
                 "Ingredients:\n" +
                 "--------------------------------\n");
@@ -77,7 +79,7 @@ namespace PoePart1
 
             }
 
-
+            //displays the list of steps involved
             Console.WriteLine("--------------------------------\n" +
             "Instructions:\n" +
             "--------------------------------\n");
@@ -89,19 +91,24 @@ namespace PoePart1
             }
 
 
-
+            // Prompt the user to enter a scaling factor for the recipe or choose to clear the recipe or exit the application
             Console.WriteLine("Enter your required scaling factor for the recipe (0.5, 2, 3) or '4' to clear recipe or '5' to reset quantites and 6 to exit application:");
 
+
+            // user input from console
             string input = Console.ReadLine();
 
+            //if inpuit is 4 the recipe must be cleared completely
             if (input == "4")
             {
+                // If input is 4, reset all the ingredient, quantity and unit values to default
                 for (int i = 0; i < amount; i++)
                 {
                     ingredients[i] = default;
                     quantity[i] = default;
                     units[i] = default;
                 }
+                
                 for (int i = 0; i < numsteps; i++)
                 {
                     steps[i] = default;
@@ -111,10 +118,12 @@ namespace PoePart1
 
 
                 }
+                //caals the method
                 IngredientDetails();
 
 
             }
+            // If input is 5, the recipe must reset its quantities
             else if (input == "5")
             {
                 for (int i = 0; i < quantity.Length; i++)
@@ -128,9 +137,10 @@ namespace PoePart1
 
 
             }
+            // Checks if the input is equal to "6"
             else if (input == "6")
             {
-
+                // If input is 6, exit the program
                 System.Environment.Exit(-1);
                 Console.ReadKey();
 
@@ -139,18 +149,20 @@ namespace PoePart1
 
             else
             {
+                // If the input is not 4, 5 or 6, parse the input as a scaling factor
                 double scalingfactor = double.Parse(input);
 
                 Console.WriteLine("--------------------------------\n" +
          "Scaled Recipe:\n" +
          "--------------------------------\n");
 
+                // Scale all the quantity values by the scaling factor fo your choice
                 for (int i = 0; i < amount; i++)
                 {
                     quantity[i] *= scalingfactor;
 
 
-
+                    //prints the scaled recipe
                     Console.WriteLine($" {ingredients[i]} - {quantity[i]}{units[i]}\n");
                 }
             }
