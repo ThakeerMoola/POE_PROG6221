@@ -112,6 +112,11 @@ Conclusion:
 --------------
 Overall, the program is a useful tool for creating and scaling recipes and could be expanded upon to include additional functionality, such as allowing the user to edit existing recipes, add unlimmited recipes, and add different food groups and calories, which will all be added in at a later stage.
 
+-----------------------
+Github Repository link
+-----------------------
+
+https://github.com/ThakeerMoola/PoePart1
 
 
 
