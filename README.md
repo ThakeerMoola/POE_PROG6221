@@ -68,7 +68,7 @@ The application will then further prompt the user to enter the number of steps i
 
 Afterward, the application, which was built to my design, will display the recipe details as follows:
 Ingredients:
-chips, 3 kg
+chips - 3 kg.
 
 Instructions:
 Step 1: Add
@@ -98,6 +98,14 @@ Finally, the number 5, which is for resetting all quantities, will be displayed 
 Last but not least, if the user enters 6, this will exit the application:
 
 ![image](https://user-images.githubusercontent.com/102582551/234540068-bb6b0af3-0ba6-401a-bbc8-e5d3bb71e177.png)
+
+the following picture is the total amount commits that i have made on GitHub:
+![image](https://user-images.githubusercontent.com/102582551/234609648-6c79d9d5-c3d4-486c-ad64-2e796bd9d0e6.png)
+
+
+![image](https://user-images.githubusercontent.com/102582551/234608894-1e295fce-3643-4cb1-945c-a0ac2523d837.png)
+![image](https://user-images.githubusercontent.com/102582551/234609134-e5bacdba-94ed-4037-b648-a7f9551f28e2.png)
+
 
 --------------
 Conclusion:
