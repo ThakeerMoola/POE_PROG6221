@@ -27,11 +27,19 @@ The class is called Recipe.
 First, we have the method recipe().
 This method only displays a welcoming message to the user, which will display as, "Welcome to Recipe World, your house to tasty foods!".
 
+![image](https://user-images.githubusercontent.com/102582551/234602836-07c45d81-951c-41b2-bc48-bfb1e7ea8e86.png)
+
+
 The second method we have is IngredientDetails().
 This method is where all the magic happens. This method has the bulk of the code in, such as the prompts to the user, how many ingredients are needed, the quantity, the units of measurement, the steps, and the calling, clearing, and resetting options for this application.
 
+![image](https://user-images.githubusercontent.com/102582551/234603297-f46df010-d003-4d8e-982a-e62de7f6a1b1.png)
+
+
 Last but not least, we have our main class:
 In this class, we call all our methods from our Recipe class. This is where the application will run; without the main class, the application won't run!
+
+![image](https://user-images.githubusercontent.com/102582551/234602996-71e886ad-f16e-4b48-8cdf-19d0f5653344.png)
 
 
 -------------
@@ -39,13 +47,24 @@ Instructions
 -------------
 This application works as follows:
 
-When the user executes the code, the first thing the application will ask or prompt the fuser is for output. It will ask the user to enter the amount of ingredients. When the amount is entered, it will loop for that amount of times so that the user can enter that amount of ingredients. For example, if 4 is entered, it will ask the user to enter an ingredient four times. Note that the readline outputs are integer-sensitive, which means the user can only enter an integer; if a letter is entered, the application will crash.
+When the user executes the code, the first thing the application will ask or prompt the user is for intput. It will ask the user to enter the amount of ingredients. When the amount is entered, it will loop for that amount of times so that the user can enter that amount of ingredients. For example, if 4 is entered, it will ask the user to enter an ingredient four times. Note that the readline outputs are integer-sensitive, which means the user can only enter an integer; if a letter is entered, the application will crash.
+
+![image](https://user-images.githubusercontent.com/102582551/234603696-1b65f75e-742d-439c-8612-89c754e70d5f.png)
+
+
 
 Afterward, the application will prompt the user to enter the quantity for each of the ingredients, e.g., quantity is 2. Note that the readline outputs are integer-sensitive, which means the user can only enter an integer; if a letter is entered, the application will crash.
+
+![image](https://user-images.githubusercontent.com/102582551/234604054-bbea4782-9bed-4261-b9f7-d58a6502bdcd.png)
+
+
 
 The application will prompt the user to enter the units of measurement for each ingredient as well, e.g., kg, ml, and liter. This will later be added to the quantity, e.g., 2kg.
 
 The application will then further prompt the user to enter the number of steps involved; depending on the number the user enters, it will loop for that number of times; e.g., if the user enters the number of steps, the software will run twice, asking the user to enter steps 1 and 2.
+
+![image](https://user-images.githubusercontent.com/102582551/234604461-7c2c1c1b-e411-4db2-b56f-b525fe4f9dc2.png)
+
 
 Afterward, the application, which was built to my design, will display the recipe details as follows:
 Ingredients:
@@ -58,6 +77,9 @@ Step 3: Hand
 ![recipe](https://user-images.githubusercontent.com/102582551/234523577-71f9b97e-2846-473b-9757-b99d1fc6343e.PNG)
 
 Afterwards, the application will ask the user if they want their recipe halfed, doubled, or trippled; this was done by using the scaling function. For half, we use 0.5, double is 2, and tripple would be 3. We also added 4 to reset the quantities, 5 to clear recipe details, and finally 6 to exit the application. Whichever number the user enters, the application will run. For some reason, the 0.5, which is halfing the recipe details, is not working to specification; however, the function is correct and all the other scaling numbers work.
+
+![image](https://user-images.githubusercontent.com/102582551/234604655-6e38289b-4302-44f1-813c-3e0ebe8269b9.png)
+
 
 in the following example this recipe was trippled and will display as follow:
 ![image](https://user-images.githubusercontent.com/102582551/234525234-a926804d-61df-4f9d-9ea7-b0cf67ee1b9d.png)
