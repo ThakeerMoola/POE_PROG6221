@@ -45,6 +45,8 @@ namespace PoePart1
                 Console.WriteLine($"\nEnter ingredient {i + 1} name:");
                 ingredients[i] = Console.ReadLine();
 
+
+
                 Console.WriteLine($"\nEnter quantity for {ingredients[i]}:");
                 quantity[i] = double.Parse(Console.ReadLine());
 
