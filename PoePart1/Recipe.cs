@@ -53,7 +53,7 @@ namespace PoePart1
             }
 
 
-            // Prompt the user to enter the number of steps involved in this recipe
+            // Prompt the user to enter the number of steps involved in this recipes
             Console.WriteLine("\nPlease enter the number of steps involved in this recipe:");
             int numsteps = int.Parse(Console.ReadLine());
 
