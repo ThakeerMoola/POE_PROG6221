@@ -9,7 +9,7 @@ class Recipe
 }
 
 // Ingredient class representing a single ingredient
-class Ingredient
+class Ingredientm
 {
     public string Name { get; set; }
     public int Calories { get; set; }
