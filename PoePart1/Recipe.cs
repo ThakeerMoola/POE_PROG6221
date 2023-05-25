@@ -10,12 +10,6 @@ namespace PoePart1
 {
     internal class Recipe
     {
-<<<<<<< HEAD
-        
-=======
-        n
->>>>>>> b38e8f419a4b90f4fb3de37dee237d020827ccb8
-        //class repice created, this displays the welcome message for the recipe application
         public void recipe()
         {
             
