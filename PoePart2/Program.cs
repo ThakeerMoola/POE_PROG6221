@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Linq.Expressions;
 
 namespace PoePart2
 {
@@ -19,7 +18,19 @@ namespace PoePart2
         private List<double> quantity;
         private List<int> calories;
         private List<string> foodgroup;
+
         private string[] steps;
+
+        private static List<string> availableFoodGroups = new List<string>
+        {
+            "Starchy foods",
+            "Vegetables and fruits",
+            "Dry beans, peas, lentils and soya",
+            "Chicken, fish, meat and eggs",
+            "Milk and dairy products",
+            "Fats and oil",
+            "Water"
+        };
 
         // Constructor
         public Recipe()
@@ -34,16 +45,41 @@ namespace PoePart2
         // Display recipe instructions
         public void DisplayRecipe()
         {
+            int totalCalories = calories.Sum();
+
             Console.WriteLine("--------------------------------\n" +
-                              "Instructions:\n" +
-                              "--------------------------------\n");
+                $"Recipe Ingredients for {RecipeName}:\n" +
+                "--------------------------------\n");
+
+            for (int i = 0; i < ingredients.Count; i++)
+            {
+                Console.WriteLine($"\n{ingredients[i]} - {quantity[i]} {units[i]}\n {calories[i]} Cals \n Food groups: {foodgroup[i]}");
+            }
+
+            Console.WriteLine($"\nTotal Calories: {totalCalories}");
+
+            if (totalCalories < 100)
+            {
+                Console.WriteLine("Low calorie encounter, this recipe is perfect for people on a diet");
+            }
+            else if (totalCalories > 100 && totalCalories <= 300)
+            {
+                Console.WriteLine("Moderate calorie encounter, this recipe is suitable for most people");
+            }
+            else
+            {
+                // If the total calories exceed 300, raise the event to notify the user
+                OnCalorieExceeded?.Invoke(totalCalories);
+            }
+
+            Console.WriteLine("--------------------------------\n" +
+                "Instructions:\n" +
+                "--------------------------------\n");
 
             for (int i = 0; i < steps.Length; i++)
             {
-                Console.WriteLine($"Step {i + 1}: {steps[i]}\n");
+                Console.WriteLine($"Step {i + 1}: {steps[i]}");
             }
-
-            Console.ResetColor();
         }
 
         // Add a recipe
@@ -53,7 +89,6 @@ namespace PoePart2
 
             try
             {
-
                 Console.WriteLine("Please enter the name of the recipe");
                 RecipeName = Console.ReadLine();
 
@@ -68,8 +103,19 @@ namespace PoePart2
                     Console.WriteLine($"Enter calories for {ingredients[i]} for {RecipeName}:");
                     calories.Add(int.Parse(Console.ReadLine()));
 
-                    Console.WriteLine($"select the food group from the list:\n 1)poultry\n 2)Dairy\n 3)Vegetables and fruits\n 4)Grains\n 5)Fats and oils Enter the food group for {ingredients[i]} for {RecipeName}:");
-                    foodgroup.Add(Console.ReadLine());
+                    Console.WriteLine($"Select the food group from the list:\n");
+                    DisplayAvailableFoodGroups();
+                    Console.WriteLine($"Enter the food group index for {ingredients[i]} for {RecipeName}:");
+
+                    int foodGroupIndex;
+                    if (int.TryParse(Console.ReadLine(), out foodGroupIndex) && foodGroupIndex >= 1 && foodGroupIndex <= availableFoodGroups.Count)
+                    {
+                        foodgroup.Add(availableFoodGroups[foodGroupIndex - 1]);
+                    }
+                    else
+                    {
+                        Console.WriteLine("Invalid food group index. Food group not added.");
+                    }
 
                     Console.WriteLine($"\nEnter quantity for {ingredients[i]}:");
                     quantity.Add(double.Parse(Console.ReadLine()));
@@ -80,162 +126,159 @@ namespace PoePart2
                     Console.ResetColor();
                 }
 
-                int totalCalories = calories.Sum();
-
-                Console.WriteLine("--------------------------------\n" +
-                    $"Recipe Ingredients for {RecipeName}:\n" +
-                    "--------------------------------\n");
-
-                for (int i = 0; i < amount; i++)
-                {
-                    Console.WriteLine($"\n{ingredients[i]} - {quantity[i]} {units[i]}\n {calories[i]} Cals \n Food groups: {foodgroup[i]}");
-                }
-
-                Console.WriteLine($"\nTotal Calories: {totalCalories}");
-
-                if (totalCalories < 100)
-                {
-                    Console.WriteLine("Low calorie encounter, this recipe is perfect for people on a diet");
-                }
-                else if (totalCalories > 100 && totalCalories <= 300)
-                {
-                    Console.WriteLine("Moderate calorie encounter, this recipe is suitable for most people");
-                }
-                else
-                {
-                    // If the total calories exceed 300, raise the event to notify the user
-                    OnCalorieExceeded?.Invoke(totalCalories);
-                }
-
                 Console.WriteLine("--------------------------------\n" +
                     "Instructions:\n" +
                     "--------------------------------\n");
 
-                // Prompt the user to enter the number of steps involved in this recipe
                 Console.WriteLine("\nPlease enter the number of steps involved in this recipe:");
-                int numsteps = int.Parse(Console.ReadLine());
+                int numSteps = int.Parse(Console.ReadLine());
 
-                steps = new string[numsteps];
+                steps = new string[numSteps];
 
-                for (int i = 0; i < numsteps; i++)
+                for (int i = 0; i < numSteps; i++)
                 {
                     Console.WriteLine($"\nEnter step {i + 1} and a description:");
                     steps[i] = Console.ReadLine();
                 }
-
             }
-           catch (Exception e)
+            catch (FormatException)
             {
-                Console.WriteLine(e.Message);
-
+                Console.WriteLine("Invalid input format. Please enter a valid number.");
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("An error occurred: " + e.Message);
+                throw; // Rethrow the exception to propagate it up the call stack
             }
         }
 
-        internal class Program
+        private void DisplayAvailableFoodGroups()
         {
-            private static List<Recipe> recipes = new List<Recipe>();
-
-            private static void Main()
+            for (int i = 0; i < availableFoodGroups.Count; i++)
             {
-                Console.ForegroundColor = ConsoleColor.DarkCyan;
-                Console.WriteLine("---------------------------------------------------" +
-                    "\nWelcome to Recipe World, your house to tasty foods!\n" +
-                    "---------------------------------------------------\n");
+                Console.WriteLine($"{i + 1}. {availableFoodGroups[i]}");
+            }
+        }
 
-                while (true)
+        public static void ClearRecipes(List<Recipe> recipes)
+        {
+            recipes.Clear();
+            Console.WriteLine("\nAll recipes have been cleared.");
+        }
+    }
+
+    internal class Program
+    {
+        private static List<Recipe> recipes = new List<Recipe>();
+
+        private static void Main()
+        {
+            Console.ForegroundColor = ConsoleColor.DarkCyan;
+            Console.WriteLine("---------------------------------------------------" +
+                "\nWelcome to Recipe World, your house to tasty foods!\n" +
+                "---------------------------------------------------\n");
+
+            while (true)
+            {
+                Console.WriteLine("------------------\nSelect an option:\n------------------" +
+                    "\n1. Add Recipe" +
+                    "\n2. Display All Recipes" +
+                    "\n3. Clear Recipes" +
+                    "\n4. Exit");
+
+                Console.ResetColor();
+
+                string select = Console.ReadLine();
+
+                switch (select)
                 {
-                    Console.WriteLine("------------------\nSelect an option:\n------------------" +
-                        "\n1. Add Recipe" +
-                        "\n2. Display All Recipes" +
-                        "\n3. Scale recipe" +
-                        "\n4. Clear Recipes" +
-                        "\n5. Exit");
-
-                    Console.ResetColor();
-
-                    string select = Console.ReadLine();
-
-                    switch (select)
-                    {
-                        case "1":
-                            AddRecipe();
-                            break;
-                        case "2":
-                            DisplayAllRecipes();
-                            break;
-                        case "3":
-                        //    ScaleRecipe();
-                        //    break;
-                        //case "4":
-                        //    ClearRecipe();
-                        //    break;
-                        case "5":
-
-                            Console.WriteLine("\nThank you for using Recipe World. Goodbye!");
-                            return;
-                        default:
-                            Console.WriteLine("Invalid option. Please try again.");
-                            break;
-                    }
+                    case "1":
+                        AddRecipe();
+                        break;
+                    case "2":
+                        DisplayAllRecipes();
+                        break;
+                    case "3":
+                        ClearRecipes();
+                        break;
+                    case "4":
+                        Console.WriteLine("\nThank you for using Recipe World. Goodbye!");
+                        return;
+                    default:
+                        Console.WriteLine("Invalid option. Please try again.");
+                        break;
                 }
             }
+        }
 
-            private static void AddRecipe()
+        private static void AddRecipe()
+        {
+            Recipe recipe = new Recipe();
+            recipe.OnCalorieExceeded += CalorieExceededNotification;
+
+            try
             {
-                Recipe recipe = new Recipe();
-                recipe.OnCalorieExceeded += CalorieExceededNotification;
                 recipe.AddRecipe();
                 recipes.Add(recipe);
             }
-
-            private static void DisplayAllRecipes()
+            catch (Exception)
             {
-                if (recipes.Count == 0)
+                // Ignore the exception here
+            }
+        }
+
+        private static void DisplayAllRecipes()
+        {
+            if (recipes.Count == 0)
+            {
+                Console.WriteLine("\nNo recipes available to display.");
+            }
+            else
+            {
+                Console.ForegroundColor = ConsoleColor.DarkBlue;
+                Console.WriteLine("--------\nAll Recipes:\n--------");
+
+                // Sort the recipes list in alphabetical order by recipe name
+                List<Recipe> sortedRecipes = recipes.OrderBy(r => r.RecipeName).ToList();
+
+                for (int i = 0; i < sortedRecipes.Count; i++)
                 {
-                    Console.WriteLine("\nNo recipes available to display.");
+                    Console.WriteLine($"{i + 1}. {sortedRecipes[i].RecipeName}");
+                }
+
+                Console.WriteLine("\nEnter the number of your favorite recipe dish you want to view (or '0' to go back):");
+                int recipeNumber;
+                bool validInput = int.TryParse(Console.ReadLine(), out recipeNumber);
+
+                if (validInput && recipeNumber >= 1 && recipeNumber <= sortedRecipes.Count)
+                {
+                    Console.WriteLine();
+                    sortedRecipes[recipeNumber - 1].DisplayRecipe();
+                }
+                else if (recipeNumber == 0)
+                {
+                    return; // Go back to the main menu
                 }
                 else
                 {
-                    Console.ForegroundColor = ConsoleColor.DarkBlue;
-                    Console.WriteLine("--------\nAll Recipes:\n--------");
-
-                    // Sort the recipes list in alphabetical order by recipe name
-                    List<Recipe> sortedRecipes = recipes.OrderBy(r => r.RecipeName).ToList();
-
-                    for (int i = 0; i < sortedRecipes.Count; i++)
-                    {
-                        Console.WriteLine($"{i + 1}. {sortedRecipes[i].RecipeName}");
-                    }
-
-                    Console.WriteLine("\nEnter the number of your favorite recipe dish you want to view (or '0' to go back):");
-                    int recipeNumber;
-                    bool validInput = int.TryParse(Console.ReadLine(), out recipeNumber);
-
-                    if (validInput && recipeNumber >= 1 && recipeNumber <= sortedRecipes.Count)
-                    {
-                        Console.WriteLine();
-                        sortedRecipes[recipeNumber - 1].DisplayRecipe();
-                    }
-                    else if (recipeNumber == 0)
-                    {
-                        return; // Go back to the main menu
-                    }
-                    else
-                    {
-                        Console.WriteLine("\nInvalid recipe number.");
-                        Console.ResetColor();
-                    }
+                    Console.WriteLine("\nInvalid recipe number.");
+                    Console.ResetColor();
                 }
             }
+        }
 
-            public static void CalorieExceededNotification(int totalCalories)
-            {
-                Console.ForegroundColor = ConsoleColor.Red;
+        public static void CalorieExceededNotification(int totalCalories)
+        {
+            Console.ForegroundColor = ConsoleColor.Red;
 
-                Console.WriteLine($"This recipe has {totalCalories} calories which is a high intake, exceeding the recommended limit.");
+            Console.WriteLine($"This recipe has {totalCalories} calories which is a high intake, exceeding the recommended limit.");
 
-                Console.ResetColor();
-            }
+            Console.ResetColor();
+        }
+
+        private static void ClearRecipes()
+        {
+            Recipe.ClearRecipes(recipes);
         }
     }
 }
