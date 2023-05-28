@@ -1,6 +1,4 @@
-﻿
-
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -41,7 +39,6 @@ namespace PoePart2
             quantity = new List<double>();
             calories = new List<int>();
             foodgroup = new List<string>();
-
         }
 
         // Display recipe instructions
@@ -62,16 +59,25 @@ namespace PoePart2
 
             if (totalCalories < 100)
             {
-                Console.WriteLine("Low calorie encounter, this recipe is perfect for people on a diet");
+                Console.WriteLine("Low-calorie encounter, this recipe is perfect for people on a diet");
             }
             else if (totalCalories > 100 && totalCalories <= 300)
             {
-                Console.WriteLine("Moderate calorie encounter, this recipe is suitable for most people");
+                Console.WriteLine("Moderate-calorie encounter, this recipe is suitable for most people");
             }
             else
             {
                 // If the total calories exceed 300, raise the event to notify the user
                 OnCalorieExceeded?.Invoke(totalCalories);
+            }
+
+            Console.WriteLine("--------------------------------\n" +
+                             $"Instructions steps for {RecipeName}:\n" +
+                             "--------------------------------\n");
+
+            for (int i = 0; i < steps.Length; i++)
+            {
+                Console.WriteLine($"{i + 1}) {steps[i]}");
             }
         }
 
@@ -95,20 +101,19 @@ namespace PoePart2
 
                     Console.WriteLine($"Enter calories for {ingredients[i]} for {RecipeName}:");
                     calories.Add(int.Parse(Console.ReadLine()));
-                
-            
-                    Console.WriteLine($"Select the food group from the list:\n");
+
+                    Console.WriteLine("Select the food group from the list:\n");
                     DisplayAvailableFoodGroups();
-                    Console.WriteLine($"Enter the food group index for {ingredients[i]} for {RecipeName}:");
-                
+                    Console.WriteLine($"Enter the food group index (1-{availableFoodGroups.Count}) for {ingredients[i]} for {RecipeName}:");
+
                     int foodGroupIndex;
-                    if (int.TryParse(Console.ReadLine(), out foodGroupIndex) && foodGroupIndex >= 0 && foodGroupIndex < availableFoodGroups.Count)
+                    if (int.TryParse(Console.ReadLine(), out foodGroupIndex) && foodGroupIndex >= 1 && foodGroupIndex <= availableFoodGroups.Count)
                     {
-                        foodgroup.Add(availableFoodGroups[foodGroupIndex]);
+                        foodgroup.Add(availableFoodGroups[foodGroupIndex - 1]);
                     }
                     else
                     {
-                        foodgroup.Add("Unknown");
+                        Console.WriteLine("Invalid food group index. Food group not added.");
                     }
 
                     Console.WriteLine($"Enter quantity for {ingredients[i]} for {RecipeName}:");
@@ -128,7 +133,6 @@ namespace PoePart2
                     Console.WriteLine($"\nEnter step {i + 1} and a description:");
                     steps[i] = Console.ReadLine();
                 }
-
 
                 Console.WriteLine($"\n{RecipeName} recipe has been added successfully!\n");
 
@@ -156,9 +160,8 @@ namespace PoePart2
         {
             for (int i = 0; i < availableFoodGroups.Count; i++)
             {
-                Console.WriteLine($"{i}: {availableFoodGroups[i]}");
+                Console.WriteLine($"{i + 1}) {availableFoodGroups[i]}");
             }
         }
     }
 }
-

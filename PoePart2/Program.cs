@@ -12,19 +12,20 @@ namespace PoePart2
         private static void Main()
         {
             Console.ForegroundColor = ConsoleColor.DarkGreen;
-            Console.WriteLine("---------------------------------------------------" +
-                "\nWelcome to Recipe World, your house to tasty foods!\n" +
-                "---------------------------------------------------\n");
+
+            Console.WriteLine("****************************************************" +
+                "*\n*Welcome to Recipe World, your house to tasty foods!*\n*" +
+                "****************************************************\n");
             Console.ResetColor();
 
             while (true)
             {
                 Console.ForegroundColor= ConsoleColor.Blue;
-                Console.WriteLine("------------------\nSelect an option:\n------------------" +
-                     "\n1. Add Recipe" +
-                     "\n2. Display All Recipes" +
-                     "\n3. Clear Recipes" +
-                     "\n4. Exit");
+                Console.WriteLine("-----------------\nSelect an option:\n-----------------" +
+                     "\n1) Add Recipe" +
+                     "\n2) Display All Recipes" +
+                     "\n3) Clear Recipes" +
+                     "\n4) Exit");
 
                 string select = Console.ReadLine();
 
