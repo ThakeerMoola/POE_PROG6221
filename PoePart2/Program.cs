@@ -49,6 +49,7 @@ namespace PoePart2
                         break;
 
                     case "4":
+                        Console.WriteLine("Goodbye, thanks for using recipe world");
                         return; // Exit the program by returning from the Main method
 
                     default:
@@ -75,7 +76,7 @@ namespace PoePart2
             else
             {
                 Console.ForegroundColor = ConsoleColor.Green;
-                Console.WriteLine("--------\nAll Recipes:\n--------");
+                Console.WriteLine("**************\n*All Recipes:*\n**************");
 
                 // Sort the recipes list in alphabetical order by recipe name
                 List<Recipe> sortedRecipes = recipes.OrderBy(r => r.RecipeName).ToList();
