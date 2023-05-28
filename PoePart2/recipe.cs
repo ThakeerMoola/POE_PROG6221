@@ -4,7 +4,7 @@ using System.Linq;
 
 namespace PoePart2
 {
-    internal class Recipe
+    public class Recipe
     {
         // Define a delegate for the calorie notification
         public delegate void CalorieNotification(int totalCalories);
@@ -46,9 +46,9 @@ namespace PoePart2
         {
             int totalCalories = calories.Sum();
 
-            Console.WriteLine("--------------------------------\n" +
+            Console.WriteLine("-------------------------------\n" +
                 $"Recipe Ingredients for {RecipeName}:\n" +
-                "--------------------------------\n");
+                "-------------------------------\n");
 
             for (int i = 0; i < ingredients.Count; i++)
             {
@@ -71,9 +71,9 @@ namespace PoePart2
                 OnCalorieExceeded?.Invoke(totalCalories);
             }
 
-            Console.WriteLine("--------------------------------\n" +
+            Console.WriteLine("-------------------------------\n" +
                              $"Instructions steps for {RecipeName}:\n" +
-                             "--------------------------------\n");
+                             "-------------------------------\n");
 
             for (int i = 0; i < steps.Length; i++)
             {
