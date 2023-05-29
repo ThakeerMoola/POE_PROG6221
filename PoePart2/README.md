@@ -1,6 +1,14 @@
+   ![image](https://user-images.githubusercontent.com/102582551/234572619-b6a24bc3-16bc-4fb6-ab84-b2d86f0719b5.png)
 
-//Instructions
 
+
+
+
+
+
+-------------
+INSTRUCTIONS
+-------------
 First of all, we will start by creating a new C# project in your preferred Integrated Development Environment (IDE) for C# development (e.g., Visual Studio and Netbeans) etc, and go ahead and create a new C# project.
 Pay careful attention to the names of the classes when naming it;
 Add the following classes Inside your project, create three new classes named Program.cs (which is the main class, this class is going to run the entire program from start to finish), Recipe.cs (this has most of the code inside the class, and is linked to the main class), Calories.cs (this class is used to calculate the total calories for each ingredient), and UnitTest1.cs (This class contain the Unit Testing for the Calories). Copy all the provided code for each class into their respective files.
