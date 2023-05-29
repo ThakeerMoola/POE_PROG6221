@@ -6,20 +6,21 @@ namespace PoePart2
 {
     public class Recipe
     {
-        // Define a delegate for the calorie notification
+        // delegate for the calorie notification
         public delegate void CalorieNotification(int totalCalories);
 
-        // Define an event based on the delegate
+        //event based on the delegate
         public event CalorieNotification OnCalorieExceeded;
 
         public string RecipeName { get; set; }
+        //Array list <T> used for saving data
         private List<string> ingredients;
         private List<string> units;
         private List<double> quantity;
         private List<int> calories;
         private List<string> foodgroup;
         private string[] steps;
-
+        //list for available food groups
         private static List<string> availableFoodGroups = new List<string>
         {
             "Starchy foods",
@@ -31,7 +32,8 @@ namespace PoePart2
             "Water"
         };
 
-        // Constructor
+
+        //changing List to private making it accessible 
         public Recipe()
         {
             ingredients = new List<string>();
@@ -41,24 +43,30 @@ namespace PoePart2
             foodgroup = new List<string>();
         }
 
-        // Display recipe instructions
+        // Displaying method for recipe 
         public void DisplayRecipe()
         {
+            //calories calculator & totalling amounts
             int totalCalories = calories.Sum();
 
+            
             Console.WriteLine("-------------------------------\n" +
                 $"Recipe Ingredients for {RecipeName}:\n" +
                 "-------------------------------\n");
 
+            //for loop for ingredients 
             for (int i = 0; i < ingredients.Count; i++)
             {
                 Console.WriteLine($"\n{ingredients[i]} - {quantity[i]} {units[i]}\n {calories[i]} Cals \n Food groups: {foodgroup[i]}");
             }
 
+            //displaying the total calories to the user 
             Console.WriteLine($"\nTotal Calories: {totalCalories}");
 
+            //if statement for total calories, if entered amount the following will display
             if (totalCalories < 100)
             {
+                //if value is less than 100 display the following
                 Console.ForegroundColor = ConsoleColor.Yellow;
                 Console.WriteLine("Low-calorie intake, this recipe is perfect for people on a diet");
                 Console.ResetColor();
@@ -66,6 +74,7 @@ namespace PoePart2
             }
             else if (totalCalories > 100 && totalCalories <= 300)
             {
+                //if vsalue is less equal to, display the following
                 Console.ForegroundColor = ConsoleColor.Blue;
                 Console.WriteLine("Medium-calorie intake, this recipe is suitable for most people");
                 Console.ResetColor();
@@ -79,7 +88,7 @@ namespace PoePart2
             Console.WriteLine("-------------------------------\n" +
                              $"Instructions steps for {RecipeName}:\n" +
                              "-------------------------------\n");
-
+            //displaying the steps instruction
             for (int i = 0; i < steps.Length; i++)
             {
                 Console.WriteLine($"{i + 1}) {steps[i]}");
@@ -87,15 +96,16 @@ namespace PoePart2
             }
         }
 
-        // Add a recipe
+        // Method to add a recipe
         public void AddRecipe(List<Recipe> recipes)
         {
             Console.ForegroundColor = ConsoleColor.Green;
 
+            //try and catch exception for handling
             try
             {
                 Console.WriteLine("Please enter the name of the recipe");
-                RecipeName = Console.ReadLine();
+                RecipeName = Console.ReadLine(); //prompting for input from user
 
                 Console.WriteLine("\nPlease enter the number of ingredients for your special dish:");
                 int amount = int.Parse(Console.ReadLine());
@@ -116,6 +126,7 @@ namespace PoePart2
 
                     Console.ResetColor();
                     int foodGroupIndex;
+                    //foodgroup if statement, running through the index
                     if (int.TryParse(Console.ReadLine(), out foodGroupIndex) && foodGroupIndex >= 1 && foodGroupIndex <= availableFoodGroups.Count)
                     {
                         foodgroup.Add(availableFoodGroups[foodGroupIndex - 1]);
@@ -150,6 +161,7 @@ namespace PoePart2
 
                 recipes.Add(this);
             }
+            //catch exception if inncorrect value is added in
             catch (Exception ex)
             {
                 Console.ForegroundColor = ConsoleColor.Red;
