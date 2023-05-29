@@ -47,7 +47,7 @@ The above is the Array List<T> which was chaged from arrays. this is used to sav
    
 ![image](https://github.com/ThakeerMoola/POE_PROG6221/assets/102582551/b9b3ec4a-9bd0-4518-a064-b9c1e87ecfea)
    
-User cal add the name of each recipe which was implemented in this part.
+User can add the name of each recipe which was implemented in this part.
 
 ![image](https://github.com/ThakeerMoola/POE_PROG6221/assets/102582551/67f037e2-b286-4550-be62-09cebb0d8a7c)
    
@@ -68,7 +68,7 @@ Recipes are being displayed in aphabetical order for the user.
    
 ![image](https://github.com/ThakeerMoola/POE_PROG6221/assets/102582551/9810e5db-198d-453b-b010-544ec6cc7075)
    
-as one can see the recipe is being displayed and the calorie counter has been totaled correctly. For testing purposes one can see that this is a high calorie intake, hence the red text.
+As one can see the recipe is being displayed and the calorie counter has been totaled correctly. For testing purposes one can see that this is a high calorie intake, hence the red text.
    
 ------------
 conclusion
