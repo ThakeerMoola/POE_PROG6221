@@ -20,7 +20,7 @@ namespace PoePart2
 
             while (true)
             {
-                Console.ForegroundColor= ConsoleColor.Blue;
+                Console.ForegroundColor= ConsoleColor.DarkYellow;
                 Console.WriteLine("-----------------\nSelect an option:\n-----------------" +
                      "\n1) Add Recipe" +
                      "\n2) Display All Recipes" +
@@ -53,7 +53,7 @@ namespace PoePart2
                         return; // Exit the program by returning from the Main method
 
                     default:
-                        Console.WriteLine("Invalid choice. Please try again.\n");
+                        Console.WriteLine("Invalid selection. Please try again.\n");
                         
                         Console.ResetColor();
                         break;
@@ -65,7 +65,7 @@ namespace PoePart2
         }
 
         // Display all recipes
-        private static void DisplayAllRecipes()
+        public static void DisplayAllRecipes()
         {
             if (recipes.Count == 0)
             {

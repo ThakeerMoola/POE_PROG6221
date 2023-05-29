@@ -59,18 +59,23 @@ namespace PoePart2
 
             if (totalCalories < 100)
             {
-                Console.WriteLine("Low-calorie encounter, this recipe is perfect for people on a diet");
+                Console.ForegroundColor = ConsoleColor.Yellow;
+                Console.WriteLine("Low-calorie intake, this recipe is perfect for people on a diet");
+                Console.ResetColor();
+
             }
             else if (totalCalories > 100 && totalCalories <= 300)
             {
-                Console.WriteLine("Moderate-calorie encounter, this recipe is suitable for most people");
+                Console.ForegroundColor = ConsoleColor.Blue;
+                Console.WriteLine("Medium-calorie intake, this recipe is suitable for most people");
+                Console.ResetColor();
             }
             else
             {
                 // If the total calories exceed 300, raise the event to notify the user
                 OnCalorieExceeded?.Invoke(totalCalories);
             }
-
+            Console.ForegroundColor= ConsoleColor.Green;    
             Console.WriteLine("-------------------------------\n" +
                              $"Instructions steps for {RecipeName}:\n" +
                              "-------------------------------\n");
@@ -78,6 +83,7 @@ namespace PoePart2
             for (int i = 0; i < steps.Length; i++)
             {
                 Console.WriteLine($"{i + 1}) {steps[i]}");
+                Console.ResetColor();
             }
         }
 
@@ -99,13 +105,16 @@ namespace PoePart2
                     Console.WriteLine($"\nEnter ingredient {i + 1} for {RecipeName}:");
                     ingredients.Add(Console.ReadLine());
 
-                    Console.WriteLine($"Enter calories for {ingredients[i]} for {RecipeName}:");
+                    Console.WriteLine($"\nEnter calories for {ingredients[i]} for {RecipeName}:");
                     calories.Add(int.Parse(Console.ReadLine()));
+                    Console.ResetColor();
 
+                    Console.ForegroundColor= ConsoleColor.DarkYellow;
                     Console.WriteLine("Select the food group from the list:\n");
                     DisplayAvailableFoodGroups();
-                    Console.WriteLine($"Enter the food group index (1-{availableFoodGroups.Count}) for {ingredients[i]} for {RecipeName}:");
+                    Console.WriteLine($"\nSelect the Food Group for {ingredients[i]} for {RecipeName}:");
 
+                    Console.ResetColor();
                     int foodGroupIndex;
                     if (int.TryParse(Console.ReadLine(), out foodGroupIndex) && foodGroupIndex >= 1 && foodGroupIndex <= availableFoodGroups.Count)
                     {
@@ -113,13 +122,14 @@ namespace PoePart2
                     }
                     else
                     {
-                        Console.WriteLine("Invalid food group index. Food group not added.");
+                        Console.WriteLine("Invalid food group selection. Food group not added.");
                     }
 
-                    Console.WriteLine($"Enter quantity for {ingredients[i]} for {RecipeName}:");
+                    Console.ForegroundColor=ConsoleColor.Green;
+                    Console.WriteLine($"\nEnter quantity for {ingredients[i]} for {RecipeName}:");
                     quantity.Add(double.Parse(Console.ReadLine()));
 
-                    Console.WriteLine($"Enter unit for {ingredients[i]} for {RecipeName}:");
+                    Console.WriteLine($"\nEnter unit for {ingredients[i]} for {RecipeName}:");
                     units.Add(Console.ReadLine());
                 }
 
@@ -132,9 +142,11 @@ namespace PoePart2
                 {
                     Console.WriteLine($"\nEnter step {i + 1} and a description:");
                     steps[i] = Console.ReadLine();
+                    Console.ResetColor();
                 }
 
                 Console.WriteLine($"\n{RecipeName} recipe has been added successfully!\n");
+                
 
                 recipes.Add(this);
             }
@@ -156,7 +168,7 @@ namespace PoePart2
         }
 
         // Display available food groups
-        private void DisplayAvailableFoodGroups()
+        public void DisplayAvailableFoodGroups()
         {
             for (int i = 0; i < availableFoodGroups.Count; i++)
             {
