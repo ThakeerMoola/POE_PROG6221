@@ -69,6 +69,13 @@ Recipes are being displayed in aphabetical order for the user.
 ![image](https://github.com/ThakeerMoola/POE_PROG6221/assets/102582551/9810e5db-198d-453b-b010-544ec6cc7075)
    
 As one can see the recipe is being displayed and the calorie counter has been totaled correctly. For testing purposes one can see that this is a high calorie intake, hence the red text.
+ 
+---------------
+COMMIT HISTORY
+---------------
+ 
+ ![image](https://github.com/ThakeerMoola/POE_PROG6221/assets/102582551/f46b69e1-a123-498a-8353-8f814fdf6728)
+
    
 ------------
 conclusion
