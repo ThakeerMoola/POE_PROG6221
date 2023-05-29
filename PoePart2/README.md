@@ -45,24 +45,39 @@ SCREENSHOTS AND CHANGES
 The above is the Array List<T> which was chaged from arrays. this is used to save user data. I also made use of generic collections which is can be seen above as well.
    
 ![image](https://github.com/ThakeerMoola/POE_PROG6221/assets/102582551/b9b3ec4a-9bd0-4518-a064-b9c1e87ecfea)
+   
 User cal add the name of each recipe which was implemented in this part.
 
 ![image](https://github.com/ThakeerMoola/POE_PROG6221/assets/102582551/67f037e2-b286-4550-be62-09cebb0d8a7c)
+   
 Users are able to enter and add recipes. after each recipe is entered the program will run again to prompt user if they want to add another recipe, display or exit the application.
    
 ![image](https://github.com/ThakeerMoola/POE_PROG6221/assets/102582551/cdfb66ca-d4d2-4873-befa-310df2c3abc2)
+   
 ![image](https://github.com/ThakeerMoola/POE_PROG6221/assets/102582551/7da34b7d-c1b0-4677-9e01-ec761019ac3d)
+   
 ![image](https://github.com/ThakeerMoola/POE_PROG6221/assets/102582551/ca6d106a-53eb-470d-8020-118918eb1c2b)
 
-In the above screenshot a User is entering values that are inccorect and the application is making use of exception handling, meaning the application wont crash.
+In the above screenshots a User is entering values that are inccorect and the application is making use of exception handling, meaning the application wont crash.
    
 ![image](https://github.com/ThakeerMoola/POE_PROG6221/assets/102582551/e9500368-a56a-4bc7-9834-466b4c588c8e)
+   
 Recipes are being displayed in aphabetical order for the user.
    
    
 ![image](https://github.com/ThakeerMoola/POE_PROG6221/assets/102582551/9810e5db-198d-453b-b010-544ec6cc7075)
+   
 as one can see the recipe is being displayed and the calorie counter has been totaled correctly. For testing purposes one can see that this is a high calorie intake, hence the red text.
    
+------------
+conclusion
+------------
+Overall, the program is a useful tool for creating unlimited recipes and could be expanded upon to include additional functionality, such as allowing the user to edit existing recipes, giving the application a user friendly experience and many more, which will all be added in at a later stage.
+   
+-----------------
+GITHUB REPOSITORY
+-----------------
+
 
 
 
