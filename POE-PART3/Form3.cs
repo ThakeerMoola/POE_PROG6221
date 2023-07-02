@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.Window;
 
 namespace POE_PART3
 {
@@ -17,11 +18,11 @@ namespace POE_PART3
 
         public event CalorieNotification OnCalorieExceeded;
 
-         // Remove the 'static' keyword
+        // Remove the 'static' keyword
         public List<Arrays> recipes = new List<Arrays>();
 
 
-      
+
 
         public Form3()
         {
@@ -31,20 +32,42 @@ namespace POE_PART3
 
         private void button1_Click(object sender, EventArgs e)
         {
-            Arrays recipe = new Arrays();
-            recipes.Add(recipe);
+            if (recipes.Count == 0)
+            {
+                Arrays recipe = new Arrays();
+                recipes.Add(recipe);
+            }
 
-            recipe.ingredients.Add(textBox1.Text);
-            recipe.units.Add(textBox2.Text);
-            recipe.quantity.Add(Convert.ToInt32(textBox3.Text));
-            recipe.calories.Add(Convert.ToInt32(textBox5.Text));
-            recipe.steps.Add(textBox6.Text);
-            recipe.foodgroup.Add(comboBox1.SelectedItem.ToString());
+            Arrays currentRecipe = recipes[0];
+
+            currentRecipe.recipename.Add(textBox7.Text);
+            currentRecipe.ingredients.Add(textBox1.Text);
+            currentRecipe.units.Add(textBox2.Text);
+            currentRecipe.quantity.Add(Convert.ToInt32(textBox3.Text));
+            currentRecipe.calories.Add(Convert.ToInt32(textBox5.Text));
+
+            int numSteps;
+            if (int.TryParse(textBox6.Text, out numSteps) && numSteps > 0)
+            {
+                for (int i = 0; i < numSteps; i++)
+                {
+                    string step = Microsoft.VisualBasic.Interaction.InputBox($"Enter Step {i + 1} for {textBox1.Text}:");
+                    currentRecipe.steps.Add(step);
+                }
+            }
+            else
+            {
+                MessageBox.Show("Invalid number of steps.", "Invalid Input", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+
+            currentRecipe.foodgroup.Add(comboBox1.SelectedItem.ToString());
+            textBox7.Enabled = false;
 
             Form1 form1 = this.Owner as Form1;
-            form1.recipes.Add(recipe);
+            form1.recipes.Add(currentRecipe);
             MessageBox.Show("Ingredients added successfully", "Test Message");
         }
+
 
         private void button2_Click(object sender, EventArgs e)
         {
@@ -52,60 +75,61 @@ namespace POE_PART3
             {
                 Arrays recipe = recipes[0];
 
-                
-               
-
                 List<int> calories = recipe.calories;
                 int totalCalories = calories.Sum();
 
-                string caption = "Word Processor";
+                StringBuilder message = new StringBuilder();
 
-                MessageBox.Show(null,
-                    caption + "--------------------------------------------------------------\n" +
-                    $"Recipe Ingredients for {string.Join(", ", recipe.recipename)}:\n" +
-                    "--------------------------------------------------------------\n" +
-                    $"Ingredients: {string.Join(", ", recipe.ingredients)}\n" +
-                    $"Food Group: {string.Join(",", recipe.foodgroup)}\n" +
-                    $"Quantity: {string.Join(", ", recipe.quantity)} {string.Join(", ", recipe.units)}\n" +
-                    $"Calories: {string.Join(", ", recipe.calories)}\n" +
-                    $"\nTotal Calories: {totalCalories}\n" +
-                    $"Steps: {string.Join(", ", recipe.steps)}",
-                    "Recipe Details",
-                    MessageBoxButtons.OK,
-                    MessageBoxIcon.Information);
+                message.AppendLine("Recipe Details");
+                message.AppendLine("--------------------------------");
+                message.AppendLine($"Recipe Name: {string.Join(", ", recipe.recipename[0])}");
+                message.AppendLine("--------------------------------");
+                message.AppendLine("Ingredients:");
 
-                if (totalCalories < 100)
+                for (int i = 0; i < recipe.ingredients.Count; i++)
                 {
-                    MessageBox.Show("Low-calorie intake, this recipe is perfect for people on a diet",
-                        "Calorie Intake",
-                        MessageBoxButtons.OK,
-                        MessageBoxIcon.Warning);
+                    double quantity = (double)recipe.quantity[i];
+                    string ingredient = recipe.ingredients[i];
+                    string foodGroup = recipe.foodgroup[i];
+
+                    string unit = recipe.units[i];
+                    int calorie = recipe.calories[i];
+
+                    message.AppendLine($"Ingredient {i + 1}:");
+                    message.AppendLine($"  - Name: {ingredient}");
+                    message.AppendLine($"  - Food Group: {foodGroup}");
+                    message.AppendLine($"  - Quantity: {quantity} {unit}");
+                    message.AppendLine($"  - Calories: {calorie}");
+                    message.AppendLine("--------------------------------");
                 }
-                else if (totalCalories > 100 && totalCalories <= 300)
-                {
-                    MessageBox.Show("Medium-calorie intake, this recipe is suitable for most people",
-                        "Calorie Intake",
-                        MessageBoxButtons.OK,
-                        MessageBoxIcon.Information);
-                }
-                else
-                {
-                    // If the total calories exceed 300, raise the event to notify the user
-                    OnCalorieExceeded?.Invoke(totalCalories);
-                }
+
+                message.AppendLine($"Total Calories: {totalCalories}");
+                message.AppendLine("--------------------------------");
+                message.AppendLine("Steps:");
+                message.AppendLine(string.Join(", ", recipe.steps));
+
+                string caption = "Recipe Details";
+
+                MessageBox.Show(message.ToString(), caption, MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                // Rest of the code...
             }
             else
             {
-                MessageBox.Show("No recipes available.",
-                    "Recipe Not Found",
-                    MessageBoxButtons.OK,
-                    MessageBoxIcon.Information);
+                MessageBox.Show("No recipes available.", "Recipe Not Found", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
 
             Close();  // Close Form3
+
+
         }
 
-        private void pictureBox1_Click(object sender, EventArgs e)
+        private void label7_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
 
         }

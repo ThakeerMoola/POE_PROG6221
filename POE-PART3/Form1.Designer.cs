@@ -103,6 +103,7 @@
             button5.TabIndex = 4;
             button5.Text = "Search Recipe";
             button5.UseVisualStyleBackColor = false;
+            button5.Click += button5_Click;
             // 
             // pictureBox1
             // 

@@ -7,58 +7,49 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static System.Windows.Forms.DataFormats;
 
-namespace POE_PART3
+namespace POE_PART3 { 
+ public partial class Form2 : Form
 {
+    public delegate void CalorieNotification(int totalCalories);
 
-    public partial class Form2 : Form
+    public event CalorieNotification OnCalorieExceeded;
+
+
+
+    public List<Arrays> recipes = new List<Arrays>(); //calling arraylist class 
+
+    public Form2()
     {
-        public static List<Arrays> recipes = new List<Arrays>(); //calling arraylist class 
-        public Form2()
-        {
-            InitializeComponent();
-        }
-
-        private void label1_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void button1_Click(object sender, EventArgs e)
-        {
-
-
-            Arrays recipe = new Arrays();
-
-
-
-            recipe.recipename.Add(textBox1.Text);
-            int amount;
-
-            if (int.TryParse(textBox2.Text, out amount))
-            {
-
-                for (int i = 0; i < amount; i++)
-                {
-                    Form3 form3 = new Form3();
-                    form3.Show();
-                    // Your loop code goes here
-                }
-            }
-            else
-            {
-                MessageBox.Show("Invalid input for amount.");
-            }
-        }
-
-        private void panel1_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
-        private void textBox1_TextChanged(object sender, EventArgs e)
-        {
-
-        }
+        InitializeComponent();
     }
+
+    private void label1_Click(object sender, EventArgs e)
+    {
+
+    }
+
+    private void button1_Click(object sender, EventArgs e)
+    {
+
+
+        //Arrays recipe = new Arrays();
+        //recipes.Add(recipe);
+        //recipe.recipename.Add(textBox1.Text);
+
+        //    Form1 form1 = this.Owner as Form1;
+        //    form1.recipes.Add(recipe);
+
+        //    DialogResult = DialogResult.OK; // Set DialogResult to OK
+        //    Close();  // Close Form2
+
+        //    Form3 form3 = new Form3();
+        //    form3.ShowDialog(); // Show Form3 as a modal dialog
+
+
+            
+        }
 }
+}
+

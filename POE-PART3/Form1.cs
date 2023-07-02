@@ -1,3 +1,4 @@
+using Microsoft.VisualBasic.Logging;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -27,45 +28,43 @@ namespace POE_PART3
 
         private void button1_Click(object sender, EventArgs e)
         {
-            Form2 form2 = new Form2();
-            form2.Show();
+
 
             Form3 form3 = new Form3();
-            form3.OnCalorieExceeded += HandleCalorieExceeded; // Subscribe to the event
             form3.ShowDialog(this);
 
         }
 
-        private void HandleCalorieExceeded(int totalCalories)
+        public void HandleCalorieExceeded(int totalCalories)
         {
             // Handle the event here
             MessageBox.Show($"Calorie limit exceeded: {totalCalories} calories", "Calorie Exceeded");
         }
 
-        
-   
 
-    private void button3_Click(object sender, EventArgs e)
+
+
+        private void button3_Click(object sender, EventArgs e)
         {
             System.Windows.Forms.Application.Exit();
         }
 
         private void button4_Click(object sender, EventArgs e)
         {
-            string message = "Are you sure you want to clear all recipe data";
-            string title = "Clear Recipe Data";
-            //MessageBox.Show(message, title);
-            MessageBoxButtons buttons = MessageBoxButtons.YesNo;
-            DialogResult result = MessageBox.Show(message, title, buttons);
-            if (result == DialogResult.Yes)
             {
+                if (recipes.Count > 0)
+                {
+                    // Clear all recipe data
+                    recipes.Clear();
 
-                MessageBox.Show("all data have been cleaered");
-                this.Close();
-            }
-            else
-            {
-                // Do something  
+                    MessageBox.Show("Recipe data cleared successfully", "Clear Recipe Data", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                else
+                {
+                    MessageBox.Show("No recipes available.", "Recipe Not Found", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+
+                Close();  // Close Form3
             }
         }
 
@@ -76,28 +75,27 @@ namespace POE_PART3
 
         private void button2_Click(object sender, EventArgs e)
         {
-            
-            
 
-            //if user enters 0 or if no recipes is entered, application will display no recipes
             if (recipes.Count == 0)
             {
                 MessageBox.Show("\nNo recipes available to display.");
             }
             else
             {
-                MessageBox.Show("**************\n*All Recipes:*\n**************");
+                StringBuilder recipeList = new StringBuilder();
+                recipeList.AppendLine("**************");
+                recipeList.AppendLine("*All Recipes:*");
+                recipeList.AppendLine("**************");
 
                 // Sorting the recipes list in alphabetical order by recipe name
-                List<Arrays> sortedRecipes = recipes.OrderBy(r => r.RecipeName).ToList();
+                List<Arrays> sortedRecipes = recipes.OrderBy(r => r.recipename[0]).ToList();
 
-                string recipeList = "";
                 for (int i = 0; i < sortedRecipes.Count; i++)
                 {
-                    recipeList += $"{i + 1}. {sortedRecipes[i].RecipeName}\n";
+                    recipeList.AppendLine($"{i + 1}. {string.Join(", ", sortedRecipes[i].recipename[0])}");
                 }
 
-                MessageBox.Show(recipeList, "Recipe List");
+                MessageBox.Show(recipeList.ToString(), "Recipe List");
 
                 string userInput = Microsoft.VisualBasic.Interaction.InputBox("Enter the number of your favorite recipe dish you want to view (or '0' to go back):");
 
@@ -107,7 +105,8 @@ namespace POE_PART3
                     {
                         Arrays selectedRecipe = sortedRecipes[recipeNumber - 1];
                         string recipeDetails = GetRecipeDetails(selectedRecipe);
-                        MessageBox.Show(recipeDetails, selectedRecipe.RecipeName);
+
+                        MessageBox.Show(recipeDetails, string.Join(", ", selectedRecipe.recipename[0]));
                     }
                     else if (recipeNumber == 0)
                     {
@@ -123,16 +122,55 @@ namespace POE_PART3
                     MessageBox.Show("\nInvalid input.");
                 }
             }
+
         }
+ 
+
 
         private string GetRecipeDetails(Arrays recipe)
         {
-            string details = $"Recipe Ingredients:\n{string.Join(", ", recipe.ingredients)}\n\n";
-            details += $"Food Group: {string.Join(", ", recipe.foodgroup)}\n";
-            details += $"Quantity: {string.Join(", ", recipe.quantity)} {string.Join(", ", recipe.units)}\n";
-            details += $"Calories: {string.Join(", ", recipe.calories)}\n";
-            details += $"Steps: {string.Join(", ", recipe.steps)}";
-            return details;
+            StringBuilder details = new StringBuilder();
+            details.AppendLine("Recipe Details:");
+            details.AppendLine($"Recipe Name: {string.Join(", ", recipe.recipename[0])}");
+            details.AppendLine();
+            details.AppendLine("Recipe Ingredients:");
+            for (int i = 0; i < recipe.ingredients.Count; i++)
+            {
+                string ingredient = recipe.ingredients[i];
+                string foodGroup = recipe.foodgroup[i];
+
+                string quantity = recipe.quantity[i].ToString();
+                string unit = recipe.units[i];
+                string calorie = recipe.calories[i].ToString();
+
+                details.AppendLine($"Ingredient {i + 1}:");
+                details.AppendLine($"  - Name: {ingredient}");
+                details.AppendLine($"  - Food Group: {foodGroup}");
+                details.AppendLine($"  - Quantity: {quantity} {unit}");
+                details.AppendLine($"  - Calories: {calorie}");
+                details.AppendLine("--------------------------------");
+            }
+
+            for (int i = 0; i < recipe.steps.Count; i++)
+            {
+                details.Append("Steps");
+                details.AppendLine($"{i + 1}. {recipe.steps[i]}");
+            }
+
+            return details.ToString();
+        }
+    
+       
+
+
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+
+            Form4 form4 = new Form4(recipes);
+            form4.ShowDialog();
         }
     }
 }
+
+
