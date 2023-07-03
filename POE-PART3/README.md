@@ -1,4 +1,4 @@
-![logo](https://github.com/ThakeerMoola/POE_PROG6221/assets/102582551/e1829914-91f9-4918-8954-e4d92574c001)
+![image](https://github.com/ThakeerMoola/POE_PROG6221/assets/102582551/062ddad9-41ae-46ee-8af8-7f9359b66e43)
 
 -----------
 INTODUCTION
