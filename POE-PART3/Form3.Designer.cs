@@ -46,6 +46,7 @@
             textBox2 = new TextBox();
             textBox7 = new TextBox();
             label2 = new Label();
+            button3 = new Button();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             SuspendLayout();
             // 
@@ -101,7 +102,7 @@
             comboBox1.Name = "comboBox1";
             comboBox1.Size = new Size(263, 31);
             comboBox1.TabIndex = 35;
-            comboBox1.SelectedIndexChanged += comboBox1_SelectedIndexChanged;
+           //comboBox1.SelectedIndexChanged += comboBox1_SelectedIndexChanged;
             // 
             // textBox6
             // 
@@ -135,7 +136,7 @@
             label7.Size = new Size(108, 23);
             label7.TabIndex = 31;
             label7.Text = "food Group:";
-            label7.Click += label7_Click;
+            //label7.Click += label7_Click;
             // 
             // label6
             // 
@@ -200,12 +201,25 @@
             label2.TabIndex = 46;
             label2.Text = "Recipe Name:";
             // 
+            // button3
+            // 
+            button3.BackColor = Color.GreenYellow;
+            button3.Font = new Font("Verdana", 10.2F, FontStyle.Bold | FontStyle.Italic, GraphicsUnit.Point);
+            button3.Location = new Point(54, 272);
+            button3.Name = "button3";
+            button3.Size = new Size(94, 29);
+            button3.TabIndex = 47;
+            button3.Text = "Home";
+            button3.UseVisualStyleBackColor = false;
+            button3.Click += button3_Click;
+            // 
             // Form3
             // 
             AutoScaleDimensions = new SizeF(10F, 23F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.Crimson;
             ClientSize = new Size(767, 867);
+            Controls.Add(button3);
             Controls.Add(label2);
             Controls.Add(textBox7);
             Controls.Add(textBox2);
@@ -251,5 +265,6 @@
         private TextBox textBox2;
         private TextBox textBox7;
         private Label label2;
+        private Button button3;
     }
 }

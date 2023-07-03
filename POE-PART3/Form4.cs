@@ -31,92 +31,86 @@ namespace POE_PART3
         }
         private void FilterRecipes()
         {
-            string ingredient = textBox1.Text.Trim();
-            string foodGroup = comboBox1.SelectedItem?.ToString();
-            int maxCalories;
-
-            if (!int.TryParse(textBox2.Text.Trim(), out maxCalories))
+            try
             {
-                MessageBox.Show("Invalid maximum calories value.");
-                return;
-            }
-
-            List<Arrays> filteredRecipes = new List<Arrays>();
-
-            foreach (Arrays recipe in recipes)
-            {
-                bool includeRecipe = true;
-
-                if (!string.IsNullOrEmpty(ingredient))
+                if (recipes.Count == 0)
                 {
-                    if (!recipe.ingredients.Contains(ingredient))
-                    {
-                        includeRecipe = false;
-                    }
-                }
-
-                if (!string.IsNullOrEmpty(foodGroup))
-                {
-                    if (!recipe.foodgroup.Contains(foodGroup))
-                    {
-                        includeRecipe = false;
-                    }
-                }
-
-                if (recipe.calories.Any(calorie => calorie > maxCalories))
-                {
-                    includeRecipe = false;
-                }
-
-                if (includeRecipe)
-                {
-                    filteredRecipes.Add(recipe);
-                }
-            }
-
-            if (filteredRecipes.Count == 0)
-            {
-                MessageBox.Show("No recipes match the given criteria.");
-            }
-            else
-            {
-                listBox1.Items.Clear();
-                listBox1.Items.Add("**************");
-                listBox1.Items.Add("*Filtered Recipes:*");
-                listBox1.Items.Add("**************");
-
-                for (int i = 0; i < filteredRecipes.Count; i++)
-                {
-                    listBox1.Items.Add($"{i + 1}. {string.Join(", ", filteredRecipes[i].recipename)}");
-                }
-
-                string userInput = Microsoft.VisualBasic.Interaction.InputBox("Enter the number of the recipe you want to view (or '0' to go back):");
-
-                if (int.TryParse(userInput, out int recipeNumber))
-                {
-                    if (recipeNumber >= 1 && recipeNumber <= filteredRecipes.Count)
-                    {
-                        Arrays selectedRecipe = filteredRecipes[recipeNumber - 1];
-                        string recipeDetails = GetRecipeDetails(selectedRecipe);
-
-                        MessageBox.Show(recipeDetails, string.Join(", ", selectedRecipe.recipename));
-                    }
-                    else if (recipeNumber == 0)
-                    {
-                        return; // Go back to the main menu
-                    }
-                    else
-                    {
-                        MessageBox.Show("Invalid recipe number.");
-                    }
+                    MessageBox.Show("\nNo recipes available to display.");
                 }
                 else
                 {
-                    MessageBox.Show("Invalid input.");
+                    StringBuilder recipeList = new StringBuilder();
+                    recipeList.AppendLine("**************");
+                    recipeList.AppendLine("*All Recipes:*");
+                    recipeList.AppendLine("**************");
+
+                    // Sorting the recipes list in alphabetical order by recipe name
+                    List<Arrays> sortedRecipes = recipes.OrderBy(r => r.recipename[0]).ToList();
+
+                    for (int i = 0; i < sortedRecipes.Count; i++)
+                    {
+                        recipeList.AppendLine($"{i + 1}. {string.Join(", ", sortedRecipes[i].recipename[0])}");
+                    }
+
+                    MessageBox.Show(recipeList.ToString(), "Recipe List");
+
+                    string userInput = Microsoft.VisualBasic.Interaction.InputBox("Enter the number of your favorite recipe dish you want to view (or '0' to go back):");
+
+                    if (int.TryParse(userInput, out int recipeNumber))
+                    {
+                        if (recipeNumber >= 1 && recipeNumber <= sortedRecipes.Count)
+                        {
+                            Arrays selectedRecipe = sortedRecipes[recipeNumber - 1];
+                            string recipeDetails = GetRecipeDetails(selectedRecipe);
+
+                            MessageBox.Show(recipeDetails, string.Join(", ", selectedRecipe.recipename[0]));
+
+                            // Calorie Counter
+                            double totalCalories = 0.0;
+
+                            for (int i = 0; i < selectedRecipe.calories.Count; i++)
+                            {
+                                int ingredientCalories = selectedRecipe.calories[i];
+                                totalCalories += ingredientCalories;
+                            }
+
+                            string calorieMessage;
+                            if (totalCalories > 100)
+                            {
+                                calorieMessage = $"Low-calorie intake, this recipe is perfect for people on a diet, {totalCalories} calories.";
+                            }
+                            else if (totalCalories > 100 && totalCalories <= 300)
+                            {
+                                calorieMessage = $"Medium-calorie intake, this recipe is suitable for most people. {totalCalories} calories.";
+                            }
+                            else
+                            {
+                                calorieMessage = $"High calorie intake, Not suitable on a daily, {totalCalories} calories.";
+                            }
+
+                            MessageBox.Show(calorieMessage, "Calorie Intake");
+                        }
+                        else if (recipeNumber == 0)
+                        {
+                            return; // Go back to the main menu
+                        }
+                        else
+                        {
+                            MessageBox.Show("\nInvalid recipe number.");
+                        }
+                    }
+                    else
+                    {
+                        MessageBox.Show("\nInvalid input.");
+                    }
                 }
             }
+            catch (Exception ex)
+            {
+                MessageBox.Show("An error occurred: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
-        private string GetRecipeDetails(Arrays recipe)
+            private string GetRecipeDetails(Arrays recipe)
         {
             StringBuilder details = new StringBuilder();
             details.AppendLine("Recipe Details:");
