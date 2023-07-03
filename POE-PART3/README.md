@@ -24,7 +24,7 @@ This will than run the code and the first window will pop up, which will welcome
 
 ![image](https://github.com/ThakeerMoola/POE_PROG6221/assets/102582551/e65a86d0-0066-4cbd-8ea4-694b87ef6b37)
 
-for example if use clicks Add Recipe button the following will pop up to user.
+for example if user clicks Add Recipe button the following will pop up to user.
 
 ![image](https://github.com/ThakeerMoola/POE_PROG6221/assets/102582551/af1ff527-77a7-4642-ab81-c5c6e8ea7749)
 
@@ -32,7 +32,7 @@ Users can than fill in the following by reading the labels and than filling in t
 
 ![image](https://github.com/ThakeerMoola/POE_PROG6221/assets/102582551/50c30108-949c-4cbb-bd48-cb2ae0b73328)
 
-
+this is the recipe being displayed to user.
 ![image](https://github.com/ThakeerMoola/POE_PROG6221/assets/102582551/4bd36d80-9c5e-44a8-9d89-aa7a765b6ab7)
 
 
