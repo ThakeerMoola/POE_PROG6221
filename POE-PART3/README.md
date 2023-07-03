@@ -34,7 +34,19 @@ Users can than fill in the following by reading the labels and than filling in t
 
 This is the recipe being displayed to user.
 
-![image](https://github.com/ThakeerMoola/POE_PROG6221/assets/102582551/4bd36d80-9c5e-44a8-9d89-aa7a765b6ab7)
+![image](https://github.com/ThakeerMoola/POE_PROG6221/assets/102582551/4bd36d80-9c5e-44a8-9d89-aa7a765b6ab7
+
+--------------
+TOTAL COMMITS
+--------------
+
+![image](https://github.com/ThakeerMoola/POE_PROG6221/assets/102582551/74195c08-7ff5-44c4-a7e8-3d485d72d146)
+
+![image](https://github.com/ThakeerMoola/POE_PROG6221/assets/102582551/f9020eb8-3809-4151-90ba-8f6dc234586a)
+
+![image](https://github.com/ThakeerMoola/POE_PROG6221/assets/102582551/cafec19f-0e4c-4ade-9c27-b74766d5f091)
+
+
 
 ----------
 CONCLUSION
@@ -43,6 +55,10 @@ The application is designed with simplicity in mind, making it incredibly easy t
 
 The program serves as an invaluable tool for both creating and storing recipes, catering to the needs of cooking enthusiasts and professionals alike. With its user-friendly interface and robust features, it is the culmination of extensive development and refinement. However, the journey doesn't end here. The program holds immense potential for expansion and growth in numerous directions. Whether it's incorporating advanced recipe search algorithms, integrating nutritional information, or adding social features for recipe sharing, the possibilities are endless. As the final Windows Presentation Application, this program represents a solid foundation that can be built upon to enhance the culinary experience for users in countless ways.
 
+-----------
+GITHUB LINK
+-----------
+https://github.com/ThakeerMoola/POE_PROG6221/tree/POE_PART1_FILES/POE-PART3
 
 
 
