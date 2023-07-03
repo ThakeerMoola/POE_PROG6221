@@ -5,43 +5,48 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Net.WebSockets;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
+
+
 namespace POE_PART3
 {
+    //this is the Subdcriber Class
+
     public partial class Form1 : Form
     {
-        public delegate void CalorieNotification(int totalCalories);
+        public delegate void CalorieNotification(int totalCalories); //notification for the total calories
 
         public event CalorieNotification OnCalorieExceeded;
 
         public List<Arrays> recipes = new List<Arrays>(); //calling arraylist class 
         private double calorie;
 
-        public Form1()
+        public Form1() //form 1
         {
             InitializeComponent();
             recipes = new List<Arrays>();
         }
-
-        private void button1_Click(object sender, EventArgs e)
+        //The publisher class 
+        private void button1_Click(object sender, EventArgs e) //button action for form 3 to open
         {
 
 
 
-            Form3 form3 = new Form3();
-            form3.ShowDialog(this);
+            Form3 form3 = new Form3(); //making instance of form 3
+            form3.ShowDialog(this); //showinf form 3 
 
 
         }
 
         public void HandleCalorieExceeded(int totalCalories)
         {
-            // Handle the event here
-            MessageBox.Show($"Calorie limit exceeded: {totalCalories} calories", "Calorie Exceeded");
+            // Handling the event
+            MessageBox.Show($"Calorie limit exceeded: {totalCalories} calories", "Calorie Exceeded"); //calorie encounter once exceeded
         }
 
 
@@ -49,18 +54,18 @@ namespace POE_PART3
 
         private void button3_Click(object sender, EventArgs e)
         {
-            System.Windows.Forms.Application.Exit();
+            System.Windows.Forms.Application.Exit(); //exits the windows form
         }
 
         private void button4_Click(object sender, EventArgs e)
         {
             {
-                if (recipes.Count > 0)
+                if (recipes.Count > 0) //if statement and for loop for recipes, looping through it
                 {
                     // Clear all recipe data
                     recipes.Clear();
 
-                    MessageBox.Show("Recipe data cleared successfully", "Clear Recipe Data", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show("Recipe data cleared successfully", "Clear Recipe Data", MessageBoxButtons.OK, MessageBoxIcon.Information); //messagebox to user 
                 }
                 else
                 {
@@ -78,15 +83,15 @@ namespace POE_PART3
 
         private void button2_Click(object sender, EventArgs e)
         {
-            try
+            try //try statement for handling exceptions
             {
-                if (recipes.Count == 0)
-                {
-                    MessageBox.Show("\nNo recipes available to display.");
+                if (recipes.Count == 0) //if statement and for loop for recipes, looping through it
+                { 
+                    MessageBox.Show("\nNo recipes available to display."); //message to user if no recipe data is available
                 }
                 else
                 {
-                    StringBuilder recipeList = new StringBuilder();
+                    StringBuilder recipeList = new StringBuilder(); //string builder to append data
                     recipeList.AppendLine("**************");
                     recipeList.AppendLine("*All Recipes:*");
                     recipeList.AppendLine("**************");
@@ -101,7 +106,7 @@ namespace POE_PART3
 
                     MessageBox.Show(recipeList.ToString(), "Recipe List");
 
-                    string userInput = Microsoft.VisualBasic.Interaction.InputBox("Enter the number of your favorite recipe dish you want to view (or '0' to go back):");
+                    string userInput = Microsoft.VisualBasic.Interaction.InputBox("Enter the number of your favorite recipe dish you want to view (or '0' to go back):"); //prompting user for input
 
                     if (int.TryParse(userInput, out int recipeNumber))
                     {
@@ -115,27 +120,27 @@ namespace POE_PART3
                             // Calorie Counter
                             double totalCalories = 0.0;
 
-                            for (int i = 0; i < selectedRecipe.calories.Count; i++)
+                            for (int i = 0; i < selectedRecipe.calories.Count; i++)// for loop for the calories
                             {
                                 int ingredientCalories = selectedRecipe.calories[i];
                                 totalCalories += ingredientCalories;
                             }
 
-                            string calorieMessage;
-                            if (totalCalories > 100)
+                            string calorieMessage; //calorie encounter message to user
+                            if (totalCalories > 100) //if statement if under 100
                             {
-                                calorieMessage = $"Low-calorie intake, this recipe is perfect for people on a diet, {totalCalories} calories.";
+                                calorieMessage = $"Low-calorie intake, this recipe is perfect for people on a diet, {totalCalories} calories."; //calorie message
                             }
-                            else if (totalCalories > 100 && totalCalories <= 300)
+                            else if (totalCalories > 100 && totalCalories <= 300) 
                             {
-                                calorieMessage = $"Medium-calorie intake, this recipe is suitable for most people. {totalCalories} calories.";
+                                calorieMessage = $"Medium-calorie intake, this recipe is suitable for most people. {totalCalories} calories."; //calorie message
                             }
                             else
                             {
-                                calorieMessage = $"High calorie intake, Not suitable on a daily, {totalCalories} calories.";
+                                calorieMessage = $"High calorie intake, Not suitable on a daily, {totalCalories} calories."; //calorie message
                             }
 
-                            MessageBox.Show(calorieMessage, "Calorie Intake");
+                            MessageBox.Show(calorieMessage, "Calorie Intake");  //calorie message
                         }
                         else if (recipeNumber == 0)
                         {
@@ -143,7 +148,7 @@ namespace POE_PART3
                         }
                         else
                         {
-                            MessageBox.Show("\nInvalid recipe number.");
+                            MessageBox.Show("\nInvalid recipe number."); // invalid message for invalid number
                         }
                     }
                     else
@@ -152,14 +157,14 @@ namespace POE_PART3
                     }
                 }
             }
-            catch (Exception ex)
+            catch (Exception ex) //catch statement for handling the try
             {
                 MessageBox.Show("An error occurred: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
 
-            private string GetRecipeDetails(Arrays recipe)
+            private string GetRecipeDetails(Arrays recipe) //recipe data details
         {
             StringBuilder details = new StringBuilder();
             details.AppendLine("Recipe Details:");
@@ -199,7 +204,7 @@ namespace POE_PART3
         private void button5_Click(object sender, EventArgs e)
         {
 
-            Form4 form4 = new Form4(recipes);
+            Form4 form4 = new Form4(recipes); //showinf form 4
             form4.ShowDialog();
         }
     }

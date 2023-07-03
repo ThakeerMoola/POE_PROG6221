@@ -12,14 +12,15 @@ using static System.Windows.Forms.VisualStyles.VisualStyleElement.Window;
 
 namespace POE_PART3
 {
+    //this is the Subdcriber Class
     public partial class Form3 : Form
     {
         public delegate void CalorieNotification(int totalCalories);
 
         public event CalorieNotification OnCalorieExceeded;
 
-        // Remove the 'static' keyword
-        public List<Arrays> recipes = new List<Arrays>();
+       
+        public List<Arrays> recipes = new List<Arrays>(); //calling arraylist
 
 
 
@@ -30,7 +31,7 @@ namespace POE_PART3
         }
 
         // Event handler for button1 click
-        private void button1_Click(object sender, EventArgs e)
+        private void button1_Click(object sender, EventArgs e)// this is the publisher class
         {
             try
             {
