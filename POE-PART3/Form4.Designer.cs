@@ -163,7 +163,7 @@
             Font = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point);
             Margin = new Padding(4, 3, 4, 3);
             Name = "Form4";
-            Text = "Form4";
+            Text = "Search Recipe";
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ResumeLayout(false);
             PerformLayout();

@@ -142,8 +142,7 @@
             ForeColor = Color.Black;
             Margin = new Padding(3, 2, 3, 2);
             Name = "Form1";
-            Text = "Form1";
-            Load += Form1_Load;
+            Text = "Recipe Menu";
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).EndInit();
             ResumeLayout(false);

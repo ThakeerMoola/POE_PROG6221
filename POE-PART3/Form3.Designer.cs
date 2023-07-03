@@ -102,7 +102,6 @@
             comboBox1.Name = "comboBox1";
             comboBox1.Size = new Size(263, 31);
             comboBox1.TabIndex = 35;
-           //comboBox1.SelectedIndexChanged += comboBox1_SelectedIndexChanged;
             // 
             // textBox6
             // 
@@ -136,7 +135,6 @@
             label7.Size = new Size(108, 23);
             label7.TabIndex = 31;
             label7.Text = "food Group:";
-            //label7.Click += label7_Click;
             // 
             // label6
             // 
@@ -241,6 +239,7 @@
             ForeColor = Color.Black;
             Name = "Form3";
             Text = "Recipe Details";
+            Load += Form3_Load;
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ResumeLayout(false);
             PerformLayout();

@@ -76,17 +76,14 @@ namespace POE_PART3
             }
         }
 
-        private void Form1_Load(object sender, EventArgs e)
-        {
 
-        }
 
         private void button2_Click(object sender, EventArgs e)
         {
             try //try statement for handling exceptions
             {
                 if (recipes.Count == 0) //if statement and for loop for recipes, looping through it
-                { 
+                {
                     MessageBox.Show("\nNo recipes available to display."); //message to user if no recipe data is available
                 }
                 else
@@ -131,7 +128,7 @@ namespace POE_PART3
                             {
                                 calorieMessage = $"Low-calorie intake, this recipe is perfect for people on a diet, {totalCalories} calories."; //calorie message
                             }
-                            else if (totalCalories > 100 && totalCalories <= 300) 
+                            else if (totalCalories > 100 && totalCalories <= 300)
                             {
                                 calorieMessage = $"Medium-calorie intake, this recipe is suitable for most people. {totalCalories} calories."; //calorie message
                             }
@@ -164,7 +161,7 @@ namespace POE_PART3
         }
 
 
-            private string GetRecipeDetails(Arrays recipe) //recipe data details
+        private string GetRecipeDetails(Arrays recipe) //recipe data details
         {
             StringBuilder details = new StringBuilder();
             details.AppendLine("Recipe Details:");
@@ -196,8 +193,8 @@ namespace POE_PART3
 
             return details.ToString();
         }
-    
-       
+
+
 
 
 

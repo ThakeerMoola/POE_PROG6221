@@ -19,7 +19,7 @@ namespace POE_PART3
 
         public event CalorieNotification OnCalorieExceeded;
 
-       
+
         public List<Arrays> recipes = new List<Arrays>(); //calling arraylist
 
 
@@ -150,6 +150,11 @@ namespace POE_PART3
             {
                 MessageBox.Show("An error occurred: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+        }
+
+        private void Form3_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

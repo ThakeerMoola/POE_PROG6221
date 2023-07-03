@@ -42,22 +42,22 @@ namespace POE_PART3
                 else
                 {
                     // Prepare the list of all recipes
-                    StringBuilder recipeList = new StringBuilder();
-                    recipeList.AppendLine("**************");
-                    recipeList.AppendLine("*All Recipes:*");
-                    recipeList.AppendLine("**************");
+                    List<string> recipeList = new List<string>();
+                    recipeList.Add("**************");
+                    recipeList.Add("*All Recipes:*");
+                    recipeList.Add("**************");
 
                     // Sorting the recipes list in alphabetical order by recipe name
                     List<Arrays> sortedRecipes = recipes.OrderBy(r => r.recipename[0]).ToList();
 
-                    // Iterate over the sorted recipes and display them with numbers
+                    // Iterate over the sorted recipes and add them to the recipeList
                     for (int i = 0; i < sortedRecipes.Count; i++)
                     {
-                        recipeList.AppendLine($"{i + 1}. {string.Join(", ", sortedRecipes[i].recipename[0])}");
+                        recipeList.Add($"{i + 1}. {string.Join(", ", sortedRecipes[i].recipename[0])}");
                     }
 
-                    // Display the list of recipes
-                    MessageBox.Show(recipeList.ToString(), "Recipe List");
+                    // Assign the recipeList to the ListBox control
+                    listBox1.DataSource = recipeList;
 
                     // Prompt the user to select a recipe by number
                     string userInput = Microsoft.VisualBasic.Interaction.InputBox("Enter the number of your favorite recipe dish you want to view (or '0' to go back):");
@@ -127,7 +127,7 @@ namespace POE_PART3
             }
         }
 
-        private string GetRecipeDetails(Arrays recipe)
+            private string GetRecipeDetails(Arrays recipe)
         {
             // Prepare the recipe details
             StringBuilder details = new StringBuilder();
