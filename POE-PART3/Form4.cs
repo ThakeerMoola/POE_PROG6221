@@ -164,7 +164,7 @@ namespace POE_PART3
             return details.ToString();
         }
 
-        private void button1_Click(object sender, EventArgs e) //publisherclass 
+        private void button1_Click(object sender, EventArgs e) //publisherclass
         {
             // Trigger the recipe filtering when the button is clicked
             FilterRecipes();
