@@ -108,7 +108,7 @@
             textBox6.Location = new Point(481, 679);
             textBox6.Multiline = true;
             textBox6.Name = "textBox6";
-            textBox6.Size = new Size(62, 23);
+            textBox6.Size = new Size(62, 33);
             textBox6.TabIndex = 34;
             // 
             // textBox5
