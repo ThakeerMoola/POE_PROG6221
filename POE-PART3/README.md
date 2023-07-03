@@ -37,6 +37,9 @@ This is the recipe being displayed to user.
 ![image](https://github.com/ThakeerMoola/POE_PROG6221/assets/102582551/4bd36d80-9c5e-44a8-9d89-aa7a765b6ab7)
 
 
+The application is designed with simplicity in mind, making it incredibly easy to run. Its straightforward interface ensures that users can navigate through its features effortlessly. Every aspect of the application has been carefully crafted to be user-friendly, providing an intuitive experience for individuals of all backgrounds. From its clean design to its seamless functionality, the application captivates users with its attractive aesthetics and efficient performance. Whether you're a novice or an expert, running the application is a breeze, offering a hassle-free and enjoyable user experience. And thats how easy it is!
+
+
 
 
 
