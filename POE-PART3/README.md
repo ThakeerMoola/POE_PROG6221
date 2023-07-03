@@ -16,7 +16,27 @@ This is a (WPA) which was a build up from the previus versions which was first c
 INSTRICTUONS ON HOW TO COMPILE
 --------------------------------
 First of all, users can compile the software either using an online compiler, or an IDE such as vs code Visual studio, netbeans and many more. once the IDE is opened, user can extract the zip folder and open it in their prefered IDE, and select run POE-PART3, as seen below. 
+
 ![image](https://github.com/ThakeerMoola/POE_PROG6221/assets/102582551/8ff7ade0-3717-465a-8660-8779b53b2688)
+
+This will than run the code and the first window will pop up, which will welcome the user to the application, the user can than make a selection by clicking the button option available to user.
+
+
+![image](https://github.com/ThakeerMoola/POE_PROG6221/assets/102582551/e65a86d0-0066-4cbd-8ea4-694b87ef6b37)
+
+for example if use clicks Add Recipe button the following will pop up to user.
+
+![image](https://github.com/ThakeerMoola/POE_PROG6221/assets/102582551/af1ff527-77a7-4642-ab81-c5c6e8ea7749)
+
+Users can than fill in the following by reading the labels and than filling in the required textboxes, once all that is done, user can click add Ingredients, by doing this it will say data in the Array List <t>, user can then have the option to add more ingredients as well, once user is done, go ahead and click the display current recipe, or click home button to view and display other recipes. for example; when the display all recipes is clicked, system will prompt user to enter a number for the recipe to be viewed.
+
+![image](https://github.com/ThakeerMoola/POE_PROG6221/assets/102582551/50c30108-949c-4cbb-bd48-cb2ae0b73328)
+
+
+![image](https://github.com/ThakeerMoola/POE_PROG6221/assets/102582551/4bd36d80-9c5e-44a8-9d89-aa7a765b6ab7)
+
+
+
 
 
 
