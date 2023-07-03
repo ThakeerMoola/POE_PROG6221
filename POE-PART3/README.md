@@ -1,6 +1,8 @@
 ![logo](https://github.com/ThakeerMoola/POE_PROG6221/assets/102582551/e1829914-91f9-4918-8954-e4d92574c001)
 
-
+-----------
+INTODUCTION
+-----------
 First of all, we will start by creating a new C# project in your preferred Integrated Development Environment (IDE) for C# development (e.g., Visual Studio and Netbeans) etc, and go ahead and create a new C# project.
 
 Pay careful attention to the names of the classes when naming it;
